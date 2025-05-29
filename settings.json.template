@@ -1,0 +1,15 @@
+{
+  "download-dir": "${TRANSMISSION_DOWNLOAD_DIR:-/downloads/complete}",
+  "incomplete-dir-enabled": ${TRANSMISSION_INCOMPLETE_DIR_ENABLED:-true},
+  "incomplete-dir": "${TRANSMISSION_INCOMPLETE_DIR:-/downloads/incomplete}",
+  "watch-dir-enabled": ${TRANSMISSION_WATCH_DIR_ENABLED:-false},
+  "watch-dir": "${TRANSMISSION_WATCH_DIR:-/watch}",
+  "rpc-password": "${TRANSMISSION_RPC_PASSWORD:-transmission}",
+  "rpc-authentication-required": "${TRANSMISSION_RPC_AUTH:-true}",
+  "rpc-username": "${TRANSMISSION_RPC_USERNAME:-admin}",
+  "rpc-whitelist-enabled": false,
+  "rpc-port": "${TRANSMISSION_RPC_PORT:-9091}",
+  "peer-port": "${TRANSMISSION_PEER_PORT:-51413}",
+  "umask": 2,
+  "web-ui": "${TRANSMISSION_WEB_HOME:-/config/flood-for-transmission}"
+}
