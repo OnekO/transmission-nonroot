@@ -17,7 +17,7 @@ if [ ! -f "$SETTINGS_FILE" ]; then
   "watch-dir-enabled": $(echo "${TRANSMISSION_WATCH_DIR_ENABLED:-false}" | tr '[:upper:]' '[:lower:]'),
   "watch-dir": "${TRANSMISSION_WATCH_DIR:-/watch}",
   "rpc-password": "${TRANSMISSION_RPC_PASSWORD:-transmission}",
-  "rpc-authentication-required": true,
+  "rpc-authentication-required": "${TRANSMISSION_RPC_AUTH:-true}",
   "rpc-username": "${TRANSMISSION_RPC_USERNAME:-admin}",
   "rpc-whitelist-enabled": false,
   "rpc-port": 9091,
