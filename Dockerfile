@@ -1,17 +1,23 @@
 FROM alpine:3.20
 
-ENV TRANSMISSION_HOME=/config \
-    TRANSMISSION_WEB_HOME=/config/flood-for-transmission \
-    PUID=1000 \
+ENV PUID=1000 \
     PGID=1000 \
-    TZ=Europe/Madrid
+    TZ=Europe/Madrid \
+    TRANSMISSION_WEB_HOME=/config/flood-for-transmission \
+    TRANSMISSION_HOME=/config \
+    TRANSMISSION_DOWNLOAD_DIR=/downloads/complete \
+    TRANSMISSION_INCOMPLETE_DIR_ENABLED=true \
+    TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete \
+    TRANSMISSION_WATCH_DIR_ENABLED=false \
+    TRANSMISSION_WATCH_DIR=/watch \
+    TRANSMISSION_RPC_PASSWORD=transmission
 
-RUN addgroup -g 1000 abc && \
-    adduser -D -u 1000 -G abc abc
+RUN addgroup -g ${PGID} abc && \
+    adduser -D -u ${PUID} -G abc abc
 
-RUN apk add --no-cache transmission-daemon curl tar tzdata su-exec
+RUN apk add --no-cache transmission-daemon curl tar tzdata bash
 
-RUN mkdir -p /config /downloads /watch /config/flood-for-transmission && \
+RUN mkdir -p /config /downloads/complete /downloads/incomplete /watch /config/flood-for-transmission && \
     chown -R abc:abc /config /downloads /watch
 
 RUN curl -sL https://github.com/johman10/flood-for-transmission/releases/latest/download/flood-for-transmission.tar.gz | \
@@ -22,6 +28,7 @@ RUN chmod +x /entrypoint.sh
 
 USER abc
 WORKDIR /config
+
 VOLUME ["/config", "/downloads", "/watch"]
 
 EXPOSE 9091 51413 51413/udp 50000 50000/udp
