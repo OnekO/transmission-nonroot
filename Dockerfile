@@ -24,6 +24,8 @@ RUN curl -sL https://github.com/johman10/flood-for-transmission/releases/latest/
     tar xz -C /config/flood-for-transmission
 
 COPY entrypoint.sh /entrypoint.sh
+COPY settings.json.template /defaults/settings.json.template
+
 RUN chmod +x /entrypoint.sh
 
 USER abc
