@@ -18,7 +18,7 @@ if [ ! -f "$SETTINGS_FILE" ]; then
   "watch-dir": "${TRANSMISSION_WATCH_DIR:-/watch}",
   "rpc-password": "${TRANSMISSION_RPC_PASSWORD:-transmission}",
   "rpc-authentication-required": true,
-  "rpc-username": "admin",
+  "rpc-username": "${TRANSMISSION_RPC_USERNAME:-admin}",
   "rpc-whitelist-enabled": false,
   "rpc-port": 9091,
   "peer-port": 51413,
