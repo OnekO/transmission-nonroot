@@ -10,12 +10,16 @@ ENV PUID=1000 \
     TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete \
     TRANSMISSION_WATCH_DIR_ENABLED=false \
     TRANSMISSION_WATCH_DIR=/watch \
-    TRANSMISSION_RPC_PASSWORD=transmission
+    TRANSMISSION_RPC_PASSWORD=transmission \
+    TRANSMISSION_RPC_USERNAME=admin \
+    TRANSMISSION_RPC_AUTH=true \
+    TRANSMISSION_RPC_PORT=9091 \
+    TRANSMISSION_PEER_PORT=51413
 
 RUN addgroup -g ${PGID} abc && \
     adduser -D -u ${PUID} -G abc abc
 
-RUN apk add --no-cache transmission-daemon curl tar tzdata bash
+RUN apk add --no-cache transmission-daemon curl tar tzdata bash gettext
 
 RUN mkdir -p /config /downloads/complete /downloads/incomplete /watch /config/flood-for-transmission && \
     chown -R abc:abc /config /downloads /watch
