@@ -1,2 +1,2 @@
 # transmission-nonroot
-Non-root dockerfile for linuxsever/transmission
+Non-root alpine image for transmission
